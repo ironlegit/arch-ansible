@@ -1,0 +1,66 @@
+- name: Bootstrap development environment
+  hosts: localhost
+
+  tasks:
+    - name: Update pacman
+      community.general.pacman:
+      update_cache: true
+      upgrade: true
+
+    - name: Install plasma and kde
+      community.general.pacman:
+      name: plasma-desktop, kde-system-meta, sddm, kate, konsole
+      state: present
+
+    - name: Start sddm service (display manager for KDE)
+      ansible.builtin.systemd:
+        name: sddm
+        state: started
+        enabled: true
+
+    - name: Install git and other conveniance packages
+      community.general.pacman:
+      name: git, htop
+      state: present
+
+    - name: Install starship
+      community.general.pacman:
+      name: nerd-fonts, starship
+      state: present
+
+    - name: Copy Starship configuration
+      ansible.builtin.template:
+        src: /mytemplates/foo.j2
+        dest: ~/.config/starship.toml
+        owner: USER
+        group: USER
+        mode: '0644'
+
+    - name: Setup starship in .zshrc
+        # append eval "$(starship init zsh)" to .zshc
+
+    - name: Install Nvim
+      community.general.pacman:
+      name: nvim
+      state: present
+
+    - name: Install LazyVim
+      # git clone https://github.com/LazyVim/starter ~/.config/nvim
+
+    - name: Install ufw
+      community.general.pacman:
+      name: ufw
+      state: present
+
+    - name: Enable UFW
+      ansible.builtin.shell:
+        become: true
+        cmd: ufw enable
+
+    - name: Set default UFW policies
+      ansible.builtin.shell:
+        cmd: ufw default allow outgoing && ufw default deny incoming
+
+
+
+
