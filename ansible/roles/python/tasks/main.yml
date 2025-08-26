@@ -1,0 +1,10 @@
+tasks:
+- name: Install python and pipx
+    community.general.pacman:
+    name: python, python-pipx
+    state: present
+
+- name: Install poetry
+    community.general.pipx:
+      name: poetry
+

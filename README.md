@@ -8,13 +8,13 @@
 ## Install Ansible
 Follow this steps: https://wiki.archlinux.org/title/Ansible
 
-- For Pacman installation: ansible-galaxy collection install community.general
+- For Pacman and Pipx installation: ansible-galaxy collection install community.general
 
 ## Setup Instructions
 1. Clone this repository:
    ```bash
    git clone <your-repo-url>
    cd dotfiles/ansible
-   ansible-playbook -i inventory playbook.yml
+   ansible-playbook ????
    ```
 

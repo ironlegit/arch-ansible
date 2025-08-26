@@ -1,10 +1,7 @@
-- name: Bootstrap development environment
-  hosts: localhost
+tasks:
+- name: Install git
+    community.general.pacman:
+    name: git, htop
+    state: present
 
-  tasks:
-    - name: Install git
-      community.general.pacman:
-      name: git, htop
-      state: present
-
-    - name: Copy git alias to .zshrc
+- name: Copy git alias to .zshrc

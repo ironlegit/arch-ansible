@@ -1,0 +1,10 @@
+- hosts: local
+  roles:
+    - firewall
+    - kde
+    - zsh
+    - lazyvim
+    - git
+    - pacman
+    - accessory
+    - python

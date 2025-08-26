@@ -1,19 +1,11 @@
-- name: Bootstrap development environment
-  hosts: localhost
+tasks:
+- name: Install plasma and kde
+    community.general.pacman:
+    name: plasma-desktop, kde-system-meta, sddm, kate, konsole
+    state: present
 
-  tasks:
-    - name: Update pacman
-      community.general.pacman:
-      update_cache: true
-      upgrade: true
-
-    - name: Install plasma and kde
-      community.general.pacman:
-      name: plasma-desktop, kde-system-meta, sddm, kate, konsole
-      state: present
-
-    - name: Start sddm service (display manager for KDE)
-      ansible.builtin.systemd:
-        name: sddm
-        state: started
-        enabled: true
+- name: Start sddm service (display manager for KDE)
+    ansible.builtin.systemd:
+    name: sddm
+    state: started
+    enabled: true

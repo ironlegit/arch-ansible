@@ -1,11 +1,8 @@
-- name: Bootstrap development environment
-  hosts: localhost
+tasks:
+- name: Install Nvim
+    community.general.pacman:
+    name: nvim
+    state: present
 
-  tasks:
-    - name: Install Nvim
-      community.general.pacman:
-      name: nvim
-      state: present
-
-    - name: Install LazyVim
-      # git clone https://github.com/LazyVim/starter ~/.config/nvim
+- name: Install LazyVim
+    # git clone https://github.com/LazyVim/starter ~/.config/nvim
