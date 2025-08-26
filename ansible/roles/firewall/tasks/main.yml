@@ -1,0 +1,21 @@
+- name: Bootstrap development environment
+  hosts: localhost
+
+  tasks:
+    - name: Install ufw
+      community.general.pacman:
+      name: ufw
+      state: present
+
+    - name: Enable UFW
+      ansible.builtin.shell:
+        become: true
+        cmd: ufw enable
+
+    - name: Set default UFW policies
+      ansible.builtin.shell:
+        cmd: ufw default allow outgoing && ufw default deny incoming
+
+
+
+

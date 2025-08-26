@@ -2,9 +2,7 @@
   hosts: localhost
 
   tasks:
-    - name: Install git
+    - name: Install conveniance packages
       community.general.pacman:
-      name: git, htop
+      name: htop
       state: present
-
-    - name: Copy git alias to .zshrc
