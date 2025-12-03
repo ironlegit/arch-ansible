@@ -1,3 +1,8 @@
+# TODO
+
+* AUR pkgs: e.g. brave and quarto-cli-bin
+
+
 # Arch Linux Setup on VMware Workstation with Ansible
 
 ## Prerequisites
