@@ -1,0 +1,23 @@
+---
+- name: Install gtkmm3 for copy & paste support
+  community.general.pacman:
+    name: gtkmm3
+    state: present
+  become: yes
+  tags: vmware
+
+- name: Enable and start vmtoolsd service
+  ansible.builtin.systemd:
+    name: vmtoolsd.service
+    enabled: yes
+    state: started
+  become: yes
+  tags: vmware
+
+- name: Enable and start vmware-vmblock-fuse service
+  ansible.builtin.systemd:
+    name: vmware-vmblock-fuse.service
+    enabled: yes
+    state: started
+  become: yes
+  tags: vmware
