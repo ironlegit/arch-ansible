@@ -1,0 +1,7 @@
+---
+- name: Install KDE Plasma minimal desktop selection
+  community.general.pacman:
+    name: "{{ kde_packages }}"
+    state: present
+  become: yes
+  tags: kde
