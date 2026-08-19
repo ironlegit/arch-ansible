@@ -16,6 +16,14 @@ This repository automates post-installation configuration for Arch Linux in a VM
 - Ansible installed: `sudo pacman -S ansible`
 - Git: `sudo pacman -S git`
 
+## Dry-run
+
+Test run playbooks:
+
+```
+ansible-playbook -i inventory local-vm.yml -K --check -v
+``` 
+
 ## Usage
 
 Run all playbooks:
