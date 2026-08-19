@@ -1,0 +1,15 @@
+---
+- name: Install python development tools
+  community.general.pacman:
+    name:
+      - python
+      - python-pipx
+    state: present
+  become: yes
+  tags: python
+
+- name: Install poetry via pipx
+  community.general.pipx:
+    name: poetry
+    state: present
+  tags: python
