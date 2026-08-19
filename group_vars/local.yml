@@ -16,7 +16,7 @@ kde_packages:
   - krunner
   - sweeper
   - okular
-  - color-kde
+  - colord-kde
   - kcolorchooser
   - kdegraphics-thumbnailers
   - kgraphviewer
