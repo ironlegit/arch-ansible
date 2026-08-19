@@ -1,4 +1,3 @@
----
 - name: Post Arch Linux setup
   hosts: local
   gather_facts: yes
@@ -8,3 +7,8 @@
     - role: graphics
     - role: kde-plasma
     - role: aur-setup
+    - role: convenience-apps
+    - role: firewall
+    - role: python-dev
+    - role: lazyvim
+    - role: zsh-shell
