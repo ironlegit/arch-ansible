@@ -21,14 +21,14 @@ This repository automates post-installation configuration for Arch Linux in a VM
 Run all playbooks:
 
 ```bash
-ansible-playbook -K site.yml
+ansible-playbook -K local-vm.yml
 ```
 
 Run specific roles:
 ```bash
-ansible-playbook -K site.yml --tags kde
-ansible-playbook -K site.yml --tags vmware
-ansible-playbook -K site.yml --tags aur
+ansible-playbook -K local-vm.yml --tags kde
+ansible-playbook -K local-vm.yml --tags vmware
+ansible-playbook -K local-vm.yml --tags aur
 ```
 
 The `-K` flag prompts for sudo password.
