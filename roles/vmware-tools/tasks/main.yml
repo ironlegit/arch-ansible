@@ -21,3 +21,10 @@
     state: started
   become: yes
   tags: vmware
+
+# So far best way to fix copy/paste issues between host and guest on VMware
+# https://github.com/krisztianfekete/clipway
+- name: Install open-vm-tools-clipway (AUR) for bidirectional clipboard sync
+  ansible.builtin.command: paru -S --noconfirm open-vm-tools-clipway
+  tags: vmware
+
