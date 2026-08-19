@@ -1,14 +1,19 @@
-tasks:
+---
 - name: Install ufw
-    community.general.pacman:
+  community.general.pacman:
     name: ufw
     state: present
+  become: yes
+  tags: firewall
 
 - name: Enable UFW
-    ansible.builtin.shell:
-    become: true
+  ansible.builtin.shell:
     cmd: ufw enable
+  become: yes
+  tags: firewall
 
 - name: Set default UFW policies
-    ansible.builtin.shell:
+  ansible.builtin.shell:
     cmd: ufw default allow outgoing && ufw default deny incoming
+  become: yes
+  tags: firewall
