@@ -9,13 +9,13 @@
 - name: Clone RoboVim dotfiles
   ansible.builtin.git:
     repo: https://github.com/ironlegit/nvim-config
-    dest: "{{ ansible_user_dir }}/.config/nvim"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/nvim"
     depth: 1
   tags: lazyvim
   register: lazyvim_clone
 - name: Remove LazyVim git directory
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.config/nvim/.git"
+    path: "{{ ansible_facts['user_dir'] }}/.config/nvim/.git"
     state: absent
   when: lazyvim_clone.changed
   tags: lazyvim
