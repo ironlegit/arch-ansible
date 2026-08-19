@@ -1,0 +1,5 @@
+- name: Update pacman database and system packages
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+  become: yes
