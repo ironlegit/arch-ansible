@@ -1,0 +1,28 @@
+---
+# Local group variables for Arch Linux setup
+kde_packages:
+  - plasma-meta
+  - kde-system-meta
+  - konsole
+  - kate
+  - markdownpart
+  - kbackup
+  - kcalc
+  - kcharselect
+  - kclock
+  - kdebugsettings
+  - kdf
+  - kgpg
+  - krunner
+  - sweeper
+  - okular
+  - color-kde
+  - kcolorchooser
+  - kdegraphics-thumbnailers
+  - kgraphviewer
+  - svgpart
+  - kget
+  - kleopatra
+
+aur_packages:
+  - brave-bin
