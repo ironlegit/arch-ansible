@@ -1,0 +1,9 @@
+---
+- name: Install hardware accelerated graphics packages
+  community.general.pacman:
+    name:
+      - mesa
+      - mesa-utils
+    state: present
+  become: yes
+  tags: graphics
