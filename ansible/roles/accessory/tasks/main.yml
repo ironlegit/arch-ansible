@@ -1,5 +1,0 @@
-tasks:
-- name: Install conveniance packages
-    community.general.pacman:
-    name: htop, tree
-    state: present

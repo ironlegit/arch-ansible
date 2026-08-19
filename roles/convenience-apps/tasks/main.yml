@@ -1,0 +1,9 @@
+---
+- name: Install convenience packages
+  community.general.pacman:
+    name:
+      - htop
+      - tree
+    state: present
+  become: yes
+  tags: convenience
