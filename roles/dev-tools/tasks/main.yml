@@ -49,7 +49,7 @@
 
 - name: Lazyvim dependencies
   community.general.pacman:
-    name: {{ lazyvim_deps }}
+    name: "{{ lazyvim_deps }}"
     state: present
   become: yes
   tags: dev-tools

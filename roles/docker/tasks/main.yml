@@ -6,13 +6,13 @@
       - docker-compose
     state: present
   become: true
-  tag: docker
+  tags: docker
 
 - name: Ensure docker group exists
   ansible.builtin.group:
     name: docker
     state: present
-  tag: docker
+  tags: docker
 
 - name: Add user to docker group
   ansible.builtin.user:
@@ -20,7 +20,7 @@
     groups: docker
     append: true
   become: true
-  tag: docker
+  tags: docker
 
 - name: Enable and start docker service
   ansible.builtin.systemd:
@@ -28,4 +28,4 @@
     enabled: true
     state: started
   become: true
-  tag: docker
+  tags: docker
