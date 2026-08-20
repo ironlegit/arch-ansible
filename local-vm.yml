@@ -7,8 +7,9 @@
     - role: graphics
     - role: kde-plasma
     - role: aur-setup
-    - role: convenience-apps
     - role: firewall
     - role: python
     - role: lazyvim
     - role: zsh
+    - role: docker
+    - role: convenience-apps
