@@ -1,0 +1,78 @@
+# Basic aliases ---------------------------------------------
+
+alias diff='diff --color'
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias ll='ls -alFh'
+alias lsoct="stat -c '%04a %n'"
+
+alias vim ='nvim'
+alias editor='kate'
+
+alias rcup='source ~/.zshrc'
+
+alias pacin='sudo pacman -S'
+alias pacdbup='sudo pacman -Syyu'
+alias pacup='sudo pacman -Syyu'
+alias pacrm='sudo pacman -Rns'
+alias pacclean='sudo pacman -Sc'
+alias pacdetail='pacman -Qi'
+alias paruclean='sudo paru -Sccd'
+
+# Git aliases -----------------------------------------------
+
+git config --global alias.ap "add -p"
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.d diff
+git config --global alias.cim "commit --amend -m"
+
+# Extensive diffs
+git config --global alias.dx "difftool -t vimdiff -y"
+# Grep keywords in commits
+git config --global alias.se "!git rev-list --all | xargs git grep -F"
+# Last commit
+git config --global alias.lc "log -1 HEAD --stat"
+# Show pretty logs with branching, add -p param to see diffs
+git config --global alias.logx "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# show unpushed commits
+git config --global alias.lognp "log @{u}.."
+
+# Docker Compose --------------------------------------------
+alias dc='docker compose'
+alias dc-rebuild='dc build --no-cache'
+alias dc-up='docker compose up -d --build'
+alias dc-down='docker compose down'
+alias dc-reup='dc-down && dc-up'
+
+# KDE plasma ------------------------------------------------
+
+alias restart_kde='killall plasmashell && kstart plasmashell'
+
+alias clippy='brave /home/rli/repos/shiny-clippy/shiny_clippy.html &'
+
+# Python ----------------------------------------------------
+
+alias ae='eval $(poetry env activate)'
+alias rp='poetry run python'
+
+# LibreOffice -----------------------------------------------
+
+alias schmexcel='libreoffice --calc'
+alias wörd='libreoffice --writer'
+
+# Clean-up --------------------------------------------------
+
+alias largest_files='sudo find / -xdev -type f -size +500M -exec ls -lh {} \; | sort -k5 -h'
+alias largest_folders='sudo du -xah / | sort -rh | head -50'
+
+# CLI Resources ---------------------------------------------
+
+alias cmd_gems='brave https://www.commandlinefu.com/commands/browse'
+alias bash_cheatsheet='curl cheat.sh/bash'
+
+local_wttr() {
+    curl wttr.in/"$1"
+}

@@ -73,7 +73,7 @@
 - name: Append rendered template to .zshrc
   ansible.builtin.shell: |
     cat << 'EOF' >> ~/.zshrc
-    {{ lookup('template', 'templates/rc_aliases.j2') | indent(4) }}
+    {{ lookup('template', 'templates/.zshrc.j2') | indent(4) }}
     EOF
   args:
     executable: /bin/zsh
