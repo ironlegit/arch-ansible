@@ -28,3 +28,41 @@
   ansible.builtin.command: paru -S --noconfirm open-vm-tools-clipway
   tags: vmware
 
+- name: Create systemd user service directory
+  ansible.builtin.file:
+    path: ~/.config/systemd/user
+    state: directory
+    mode: '0755'
+  tags: vmware
+
+# Make sure vmtoolsd uses wayland backend with patch instead of X11
+- name: Create vmtoolsd-wayland user service
+  ansible.builtin.copy:
+    dest: ~/.config/systemd/user/vmtoolsd-wayland.service
+    content: |
+      [Unit]
+      Description=VMware Tools User Daemon for Wayland
+      After=graphical-session.target
+
+      [Service]
+      Type=simple
+      Environment=XDG_SESSION_TYPE=wayland
+      ExecStart=/usr/bin/vmtoolsd -n vmusr
+      Restart=on-failure
+
+      [Install]
+      WantedBy=default.target
+    mode: '0644'
+  tags: vmware
+
+- name: Enable lingering for user (allows user services to start without login)
+  ansible.builtin.command: loginctl enable-linger {{ ansible_user_id }}
+  become: yes
+  tags: vmware
+
+- name: Enable and start vmtoolsd-wayland service
+  ansible.builtin.command: systemctl --user enable --now vmtoolsd-wayland.service
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_id }}"
+  tags: vmware
+
