@@ -26,3 +26,8 @@ kde_packages:
 
 aur_packages:
   - brave-bin
+
+convenience_packages:
+  - lazygit
+  - htop
+  - tree

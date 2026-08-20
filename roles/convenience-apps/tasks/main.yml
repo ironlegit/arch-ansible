@@ -1,9 +1,7 @@
 ---
 - name: Install convenience packages
   community.general.pacman:
-    name:
-      - htop
-      - tree
+    name: "{{ convenience_packages }}"
     state: present
   become: yes
   tags: convenience
