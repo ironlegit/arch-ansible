@@ -41,3 +41,15 @@
     shell: /usr/bin/zsh
   become: yes
   tags: zsh
+
+- name: Deploy Konsole configuration
+  copy:
+    src: konsolerc.j2
+    dest: ~/.config/konsolerc
+    mode: '0644'
+
+- name: Deploy Konsole profile
+  copy:
+    src: main_zsh.profile.j2
+    dest: ~/.local/share/konsole/main_zsh.profile
+    mode: '0644'
