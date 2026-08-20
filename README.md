@@ -21,7 +21,7 @@ This repository automates post-installation configuration for Arch Linux in a VM
 Test run playbooks:
 
 ```
-ansible-playbook -i inventory local-vm.yml -K --check -v
+ansible-playbook -i inventory playbook-arch-vm.yml -K --check -v
 ``` 
 
 ## Usage
@@ -29,14 +29,15 @@ ansible-playbook -i inventory local-vm.yml -K --check -v
 Run all playbooks:
 
 ```bash
-ansible-playbook -K local-vm.yml
+ansible-playbook -K playbook-arch-vm.yml -v
 ```
 
-Run specific roles:
+Run specific roles, e.g.:
 ```bash
-ansible-playbook -K local-vm.yml --tags kde
-ansible-playbook -K local-vm.yml --tags vmware
-ansible-playbook -K local-vm.yml --tags aur
+ansible-playbook -K playbook-arch-vm.yml --tags kde -v
+ansible-playbook -K playbook-arch-vm.yml --tags pacman-update -v
 ```
 
-The `-K` flag prompts for sudo password.
+For all available tags, check `ansible-playbook playbook-arch-vm.yml --list-tags`.
+
+
