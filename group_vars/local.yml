@@ -6,7 +6,6 @@ basic_pkgs:
   - htop
   - tree
   - unzip
-  - neofetch
   - nmap
   - dnsutils
   - gnupg
