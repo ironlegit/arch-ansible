@@ -3,9 +3,7 @@
   gather_facts: yes
   roles:
     - role: pacman-update
-    - role: vmware-tools
     - role: firewall
-    - role: graphics
     - role: kde-plasma
     - role: zsh
     - role: dev-tools

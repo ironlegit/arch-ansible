@@ -1,0 +1,15 @@
+- name: Post Arch Linux setup for VMware Setup
+  hosts: local
+  gather_facts: yes
+  roles:
+    - role: pacman-update
+    - role: vmware-tools
+    - role: firewall
+    - role: graphics
+    - role: kde-plasma
+    - role: zsh
+    - role: dev-tools
+    - role: docker
+    - role: convenience-apps
+    - role: aur-setup
+    - role: dotfiles
