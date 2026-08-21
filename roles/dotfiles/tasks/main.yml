@@ -7,7 +7,7 @@
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
     mode: '0644'
-  tags: zsh
+  tags: dotfiles
 
 # .zshrc aliases
 - name: Add content to .zshrc from template
@@ -19,16 +19,7 @@
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
     mode: '0644'
-  tags: zsh
-
-# - name: Append rendered template to .zshrc
-#   ansible.builtin.shell: |
-#     cat << 'EOF' >> ~/.zshrc
-#     {{ lookup('template', 'templates/.zshrc.j2') | indent(4) }}
-#     EOF
-#   args:
-#     executable: /bin/zsh
-
+  tags: dotfiles
 
 # Konsole
 - name: Deploy Konsole configuration
@@ -38,6 +29,7 @@
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
     mode: '0644'
+  tags: dotfiles
 
 - name: Deploy Konsole profile
   ansible.builtin.template:
@@ -46,3 +38,13 @@
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
     mode: '0644'
+  tags: dotfiles
+
+- name: Deploy Konsole profile
+  ansible.builtin.template:
+    src: Sweet-Ambar-Blue.colorscheme.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/konsole/Sweet-Ambar-Blue.colorscheme"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: '0644'
+  tags: dotfiles
