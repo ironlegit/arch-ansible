@@ -9,22 +9,6 @@
   become: true
   tags: dev-tools
 
-# Lazyvim
-- name: Install Neovim
-  community.general.pacman:
-    name: nvim
-    state: present
-  become: yes
-  tags: dev-tools
-
-- name: Clone RoboVim dotfiles
-  ansible.builtin.git:
-    repo: https://github.com/ironlegit/nvim-config
-    dest: "{{ ansible_facts['user_dir'] }}/.config/nvim"
-    depth: 1
-  tags: dev-tools
-  register: lazyvim_clone
-
 # Python
 - name: Install Python3, pip, and Poetry globally
   community.general.pacman:
@@ -33,7 +17,6 @@
       - python-pip
       - poetry  # Installs Poetry system-wide
     state: present
-    update_cache: true
   become: true
   tags: dev-tools
 
@@ -41,8 +24,40 @@
 - name: Install node.js and npm
   community.general.pacman:
     name:
-      - node.js
+      - nodejs
       - npm
     state: present
   become: true
   tags: dev-tools
+
+# Install R
+- name: Install R
+  community.general.pacman:
+    name:
+      - r
+    state: present
+  become: true
+  tags: dev-tools
+
+# Lazyvim
+- name: Install Neovim
+  community.general.pacman:
+    name: nvim
+    state: present
+  become: yes
+  tags: dev-tools
+
+- name: Lazyvim dependencies
+  community.general.pacman:
+    name: {{ lazyvim_deps }}
+    state: present
+  become: yes
+  tags: dev-tools
+
+- name: Install Robovim
+  ansible.builtin.git:
+    repo: https://github.com/ironlegit/nvim-config
+    dest: "{{ ansible_facts['user_dir'] }}/.config/nvim"
+    depth: 1
+  tags: dev-tools
+  register: lazyvim_clone
