@@ -9,32 +9,33 @@
 
 ## VMware Setup
 
-- File > New Virtual Machine
-- Virtual Machine Configuration: *Typical*
-- Install operation system from: *Installer disc image file (iso)*
-- Guest Operation System: *Linux*
-- Kernel: *Other Linux 6.x kernel 64-bit*
+- `File > New Virtual Machine`
+- **Virtual Machine Configuration:** Typical
+- **Install operation system from:** Installer disc image file (iso)
+- **Guest Operation System**: Linux
+- **Kernel:** Other Linux 6.x kernel 64-bit
 - Name and location of VM.
-- Disk Size:
-    - *~150GB* (be generous)
-    - *Store virutal disk as single file*
+- **Disk Size:**
+    - Be generous, e.g. 150GB (doesn't block 150GB of space)
+    - Store virutal disk as single file
 - Memory and Processor depend on host.
 
 After completing the wizard, go to "Edit virtual machine settings":
+
 **Hardware Tab**
-- Display:
+- **Display:**
     - Accelerated 3D Graphics 
     - Strech mode and keep aspect ratio
 
 **Options tab**
-- Advanced > Firmware type: UEFI
-- Guest isolation
+- `Advanced > Firmware type`: UEFI
+- **Guest isolation**
     - Enable drag and drop
     - Enable copy and paste
 
 Start the VM.
 
-If keyboard input is very laggy, open `<vm-name>.vmx` in VM folder and add this line:
+**Note**: If keyboard input is very laggy, open `<vm-name>.vmx` in VM folder and add this line:
 
 ```{bash}
 keyboard.vusb.enable = "TRUE" # no keyboard input lag
@@ -43,6 +44,29 @@ keyboard.vusb.enable = "TRUE" # no keyboard input lag
 # 2. Archinstall
 
 Open `archinstall` or manual installation (not described here).
+
+A concise `archinstall` configuration for a standard Arch Linux setup:
+
+- **Keyboard layout:** `de_CH-latin1` (or not)
+- **Firewall:** UFW
+- **Bootloader**: systemd-boot
+- **Authentication**:
+  - Root password
+  - One user with sudo privileges
+- **Profile**: None or minimal
+- **Network backend:** NetworkManager (default backend)
+- **Additional packages:**
+  - Ansible
+  - Python
+  - vim
+- **Partitioning:**
+  - Use best-effort partitioning for simple dev-VM, else go for LVM.
+    - If using "best-effort" setup, do not create a separate `/home` partition
+  - Use `ext4` filesystem
+  - Enable full-disk encryption with LUKS
+  - Use default swap configuration.
+
+Useful guide: https://computingforgeeks.com/install-arch-linux-archinstall/
 
 # 3. Ansible
 
