@@ -1,0 +1,7 @@
+---
+- name: Install basic packages for Linux
+  community.general.pacman:
+    name: "{{ basic_pkgs }}"
+    state: present
+  become: yes
+  tags: basic

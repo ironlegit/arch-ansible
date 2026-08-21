@@ -1,5 +1,17 @@
 ---
 # Local group variables for Arch Linux setup
+basic_pkgs:
+  - openssh
+  - vim
+  - htop
+  - tree
+  - unzip
+  - neofetch
+  - nmap
+  - dnsutils
+  - gnupg
+  - openssl
+
 kde_packages:
   - plasma-meta
   - kde-system-meta
@@ -26,8 +38,12 @@ kde_packages:
 
 aur_packages:
   - brave-bin
+  - libreoffice-still
 
-convenience_packages:
-  - lazygit
-  - htop
-  - tree
+lazyvim_deps:
+  - lua
+  - luarocks
+  - fd
+  - fzf
+  - unzip
+  - tectonic
