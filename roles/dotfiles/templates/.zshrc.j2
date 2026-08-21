@@ -1,3 +1,29 @@
+#  zsh installer --------------------------------------------
+
+# invoke zsh-newuser-install -f
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename '/home/rli/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt beep nomatch
+unsetopt autocd extendedglob notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+bindkey  "^[[3~"  delete-char
+
+
 # Basic aliases ---------------------------------------------
 
 alias diff='diff --color'
