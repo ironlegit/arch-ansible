@@ -3,11 +3,11 @@
   gather_facts: yes
   roles:
     - role: pacman-update
+    - role: basic-pkgs
     - role: firewall
     - role: kde-plasma
     - role: zsh
     - role: dev-tools
     - role: docker
-    - role: convenience-apps
     - role: aur-setup
     - role: dotfiles
