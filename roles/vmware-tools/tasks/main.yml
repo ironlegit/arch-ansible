@@ -1,4 +1,11 @@
 ---
+- name: Install open-vm-tools
+  community.general.pacman:
+    name: open-vm-tools
+    state: present
+  become: yes
+  tags: vmware
+  
 - name: Install gtkmm3 for copy & paste support
   community.general.pacman:
     name: gtkmm3
