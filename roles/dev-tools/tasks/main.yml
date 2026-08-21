@@ -1,8 +1,7 @@
 ---
 # Git
-tasks:
 - name: Install git
-    community.general.pacman:
+  community.general.pacman:
     name: git, lazygit
     state: present
 
@@ -22,3 +21,13 @@ tasks:
   tags: lazyvim
   register: lazyvim_clone
 
+
+- name: Install Python3, pip, and Poetry globally
+  community.general.pacman:
+    name:
+      - python  # Provides python3 on Arch
+      - python-pip
+      - poetry  # Installs Poetry system-wide
+    state: present
+    update_cache: true
+  become: true
