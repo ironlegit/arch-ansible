@@ -29,7 +29,7 @@ ansible-playbook -i inventory playbook-arch-vm.yml -K --check -v
 Run all playbooks:
 
 ```bash
-ansible-playbook -K playbook-arch-vm.yml -v
+ansible-playbook -i inventory playbook-arch-vm.yml -K
 ```
 
 Run specific roles, e.g.:

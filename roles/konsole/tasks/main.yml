@@ -1,0 +1,16 @@
+---
+- name: Deploy Konsole configuration
+  ansible.builtin.template:
+    src: konsolerc.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.config/konsolerc"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: '0644'
+
+- name: Deploy Konsole profile
+  ansible.builtin.template:
+    src: main_zsh.profile.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/konsole/main_zsh.profile"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: '0644'

@@ -4,12 +4,13 @@
   roles:
     - role: pacman-update
     - role: vmware-tools
+    - role: firewall
     - role: graphics
     - role: kde-plasma
     - role: aur-setup
-    - role: firewall
+    - role: zsh
     - role: python
     - role: lazyvim
-    - role: zsh
     - role: docker
     - role: convenience-apps
+    - role: dotfiles
