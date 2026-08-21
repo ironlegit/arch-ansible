@@ -2,8 +2,12 @@
 # Git
 - name: Install git
   community.general.pacman:
-    name: git, lazygit
+    name:
+      - git
+      - lazygit
     state: present
+  become: true
+  tags: dev-tools
 
 # Lazyvim
 - name: Install Neovim
@@ -11,14 +15,14 @@
     name: nvim
     state: present
   become: yes
-  tags: lazyvim
+  tags: dev-tools
 
 - name: Clone RoboVim dotfiles
   ansible.builtin.git:
     repo: https://github.com/ironlegit/nvim-config
     dest: "{{ ansible_facts['user_dir'] }}/.config/nvim"
     depth: 1
-  tags: lazyvim
+  tags: dev-tools
   register: lazyvim_clone
 
 
@@ -31,3 +35,4 @@
     state: present
     update_cache: true
   become: true
+  tags: dev-tools
