@@ -31,6 +31,15 @@
     mode: '0644'
   tags: dotfiles
 
+- name: Ensure ~/.local/share/konsole exists for profile and colorscheme
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/konsole
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+  tags: dotfiles
+  
 - name: Deploy Konsole profile
   ansible.builtin.template:
     src: main_zsh.profile.j2
@@ -40,7 +49,7 @@
     mode: '0644'
   tags: dotfiles
 
-- name: Deploy Konsole profile
+- name: Deploy Konsole coloscheme
   ansible.builtin.template:
     src: Sweet-Ambar-Blue.colorscheme.j2
     dest: "{{ ansible_facts['user_dir'] }}/.local/share/konsole/Sweet-Ambar-Blue.colorscheme"
