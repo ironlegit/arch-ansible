@@ -6,7 +6,7 @@
   become: yes
   tags: kde
 
-  - name: Enable and start plasma-login-manager
+- name: Enable and start plasma-login-manager
   ansible.builtin.systemd:
     name: plasmalogin.service
     enabled: true
