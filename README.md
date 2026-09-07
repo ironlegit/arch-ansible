@@ -82,6 +82,7 @@ The ansible playbook covers post-installation configuration for Arch Linux in a 
 
 ## Requirements
 
+If not already done during `archinstall`:
 - Arch Linux with sudo access for current user
 - Ansible installed: `sudo pacman -S ansible`
 - Git: `sudo pacman -S git`
@@ -91,7 +92,7 @@ The ansible playbook covers post-installation configuration for Arch Linux in a 
 Test run playbooks:
 
 ```
-ansible-playbook -i inventory playbook-arch-vm.yml -K --check -v
+ansible-playbook -i inventory playbook-arch-vmware.yml --ask-become-pass --check -v
 ``` 
 
 ## Usage
@@ -99,16 +100,16 @@ ansible-playbook -i inventory playbook-arch-vm.yml -K --check -v
 Run all playbooks:
 
 ```bash
-ansible-playbook -i inventory playbook-arch-vm.yml -K
+ansible-playbook -i inventory playbook-arch-vmware.yml --ask-become-pass
 ```
 
 Run specific roles, e.g.:
 ```bash
-ansible-playbook -K playbook-arch-vm.yml --tags kde -v
-ansible-playbook -K playbook-arch-vm.yml --tags pacman-update -v
+ansible-playbook -K playbook-arch-vmware.yml --tags kde --ask-become-pass -v
+ansible-playbook -K playbook-arch-vmware.yml --tags pacman-update --ask-become-pass -v
 ```
 
-For all available tags, check `ansible-playbook playbook-arch-vm.yml --list-tags`.
+For all available tags, check `ansible-playbook playbook-arch-vmware.yml --list-tags`.
 
 # 4. Troubleshooting
 
