@@ -5,6 +5,7 @@
     name:
       - git
       - lazygit
+      - less
     state: present
   become: true
   tags: dev-tools
