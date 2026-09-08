@@ -1,11 +1,13 @@
 ---
+# Based on https://github.com/Morganamilo/paru#installation
 - name: Install base-devel for AUR builds
+  become: true
   community.general.pacman:
     name:
       - base-devel
       - git
+      - rust
     state: present
-  become: true
   tags: aur
 
 - name: Clone paru AUR helper repository
@@ -15,12 +17,22 @@
     depth: 1
   tags: aur
 
-- name: Build and install paru
-  ansible.builtin.shell: |
-    cd /tmp/paru
-    makepkg -si --noconfirm
-  become: true
+# Separate  build (no root) and install step (root)
+# makepkg blocks root users, but internally uses `sudo pacman` for deps, which prompt for a password.
+- name: Build paru package (no root)
+  ansible.builtin.command: makepkg -f --noconfirm
+  args:
+    chdir: /tmp/paru
+    creates: /tmp/paru/paru-*.pkg.tar.zst
   tags: aur
+
+# Install deps as root
+- name: Install built paru package
+  become: true
+  ansible.builtin.shell: pacman -U --noconfirm /tmp/paru/paru-*.pkg.tar.zst
+  args:
+    chdir: /tmp/paru
+    creates: /usr/bin/paru
 
 - name: Install AUR packages with paru
   ansible.builtin.shell: |
