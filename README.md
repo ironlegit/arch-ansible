@@ -1,5 +1,11 @@
 # Arch Linux VMware Setup
 
+This setup is highly specialized and opinionated. It was primarily developed as a VM for use with the VMware Workstation Pro hypervisor. 
+
+The desktop environment is a minimal KDE Plasma installation (see group_vars/local.yml &rarr; kde_packages) and offers virtually no media features, communication tools or office-tools, except for libre-office.
+
+This VM is intended for development and is centred around Zsh, LazyVim and Lazygit.
+
 # 1. VMware Image Setup
 
 ## Get Arch Linux Image
@@ -24,7 +30,8 @@ After completing the wizard, go to "Edit virtual machine settings":
 
 **Hardware Tab**
 - **Display:**
-    - Accelerated 3D Graphics 
+    - Accelerated 3D Graphics
+    - Recommended graphics memory
     - Strech mode and keep aspect ratio
 
 **Options tab**
@@ -35,11 +42,7 @@ After completing the wizard, go to "Edit virtual machine settings":
 
 Start the VM.
 
-**Note**: If keyboard input is very laggy, open `<vm-name>.vmx` in VM folder and add this line:
-
-```{bash}
-keyboard.vusb.enable = "TRUE" # no keyboard input lag
-```
+**Note**: If keyboard input is very laggy, [try this](#sluggish-keystrokes-in-vmware-workstation).
 
 # 2. Archinstall
 
@@ -72,10 +75,14 @@ Useful guide: https://computingforgeeks.com/install-arch-linux-archinstall/
 
 The ansible playbook covers post-installation configuration for Arch Linux in a VMware environment.
 
+**Caveat**: 
+* The `dev-tools` role is very tailored to my liking.
+* Review the `aur-setup` role and  decide whether you're comfortable proceeding with it.
+
 ## What This Does
 
 - Updates pacman and system packages
-- Installs and configures VMware tools with copy & paste support
+- Installs and configures VMware tools (only `playbook-arch-vmvare.yml`)
 - Installs hardware accelerated graphics (Mesa)
 - Installs KDE Plasma desktop with selected applications
 - Sets up AUR access and installs AUR packages
@@ -113,8 +120,15 @@ For all available tags, check `ansible-playbook playbook-arch-vmware.yml --list-
 
 # 4. Troubleshooting
 
+## Sluggish keystrokes in VMware Workstation
 
-## Copy-paste issue with VMware
+Open `<vm-name>.vmx` in VM folder and add this line:
+
+```{bash}
+keyboard.vusb.enable = "TRUE" # no keyboard input lag
+```
+
+## Copy-paste issue with VMware Workstation
 
 Copy-pasting from host to guest (VMware) or vice-versa does not work. 
 
