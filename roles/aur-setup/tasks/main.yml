@@ -18,44 +18,77 @@
   tags: aur-setup
 
 # Create emphemeral passwordless sudo user to by-pass interactive password prompts
-# Issue: makepkg and paru do not allow sudo users, but internally require `sudo pacman` calls...
-- name: Ensure a non-root build user exists for AUR builds
-  ansible.builtin.user:
-    name: aur_builder
-    create_home: true
-    shell: /bin/bash
-    system: true
-  tags: aur-setup
+ # Issue: makepkg and paru do not allow sudo users, but internally require `sudo pacman` calls...
+- name: Create user and install paru and AUR packages
+  block:
+    - name: Create the `aur_builder` user
+      become: true
+      ansible.builtin.user:
+        name: aur_builder
+        create_home: yes
+        group: wheel
+      tags: aur-setup
 
-- name: Allow aur_builder passwordless pacman (required by makepkg -si)
-  ansible.builtin.copy:
-    dest: /etc/sudoers.d/aur_builder-pacman
-    content: "aur_builder ALL=(root) NOPASSWD: /usr/bin/pacman\n"
-    owner: root
-    group: root
-    mode: '0440'
-    validate: 'visudo -cf %s'
-  tags: aur-setup
+    - name: Allow the `aur_builder` user to run `sudo pacman` without a password
+      become: yes
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/11-install-aur_builder
+        line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman, /usr/bin/paru"
+        create: yes
+        mode: 0440
+        validate: "visudo -cf %s"
+      tags: aur-setup
 
-- name: Build and install paru
-  become_user: aur_builder
-  ansible.builtin.shell: |
-    set -e
-    cd /tmp/paru
-    makepkg -si --noconfirm --needed
-  args:
-    creates: /usr/bin/paru 
-  tags: aur-setup
+    - name: Build and install paru
+      become_user: aur_builder
+      ansible.builtin.shell: |
+        set -e
+        cd /tmp/paru
+        makepkg -si --noconfirm --needed
+      args:
+        creates: /usr/bin/paru
+      tags: aur-setup
 
-- name: Install AUR packages with paru
-  become_user: aur_builder
-  ansible.builtin.shell: |
-    paru -S --noconfirm {{ item }}
-  loop: "{{ aur_packages }}"
-  tags: aur-setup
+    - name: Install AUR packages with paru
+      become: true
+      become_user: aur_builder
+      ansible.builtin.shell: |
+        paru -S --noconfirm {{ item }}
+      loop: "{{ aur_packages }}"
+      tags: aur-setup
 
-- name: Remove temporary sudo rule
-  ansible.builtin.file:
-    path: /etc/sudoers.d/aur_builder-pacman
-    state: absent
-  tags: aur-setup
+    # - name: ERROR - test always block
+    #   become: true
+    #   community.general.pacman:
+    #       name:
+    #       - gittttttttttttttttttttttt
+    #       state: present
+    #   tags: aur-setup
+
+  rescue:
+    - name: Task fails before clean-up
+      ansible.builtin.debug:
+        msg: "AUR installation failed. Remove aur_builder user."
+      tags: aur-setup
+
+  always:
+    - name: Remove temp sudo rule
+      become: true
+      ansible.builtin.file:
+        path: /etc/sudoers.d/11-install-aur_builder
+        state: absent
+      ignore_errors: yes # in case rule doesnt exist
+      tags:
+        - aur-setup
+        - aur-cleanup
+
+    - name: Remove aur_builder user
+      become: true
+      ansible.builtin.user:
+        name: aur_builder
+        state: absent
+        remove: yes # rm user home
+      ignore_errors: yes # in case user doesnt exist
+      tags:
+        - aur-setup
+        - aur-cleanup
