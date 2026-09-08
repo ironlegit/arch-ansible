@@ -5,7 +5,7 @@
       - base-devel
       - git
     state: present
-  become: yes
+  become: true
   tags: aur
 
 - name: Clone paru AUR helper repository
@@ -19,6 +19,7 @@
   ansible.builtin.shell: |
     cd /tmp/paru
     makepkg -si --noconfirm
+  become: true
   tags: aur
 
 - name: Install AUR packages with paru
