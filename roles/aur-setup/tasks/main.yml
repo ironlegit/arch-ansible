@@ -8,14 +8,14 @@
       - git
       - rust
     state: present
-  tags: aur
+  tags: aur-setup
 
 - name: Clone paru AUR helper repository
   ansible.builtin.git:
     repo: https://aur.archlinux.org/paru.git
     dest: /tmp/paru
     depth: 1
-  tags: aur
+  tags: aur-setup
 
 # Separate  build (no root) and install step (root)
 # makepkg blocks root users, but internally uses `sudo pacman` for deps, which prompt for a password.
@@ -24,7 +24,7 @@
   args:
     chdir: /tmp/paru
     creates: /tmp/paru/paru-*.pkg.tar.zst
-  tags: aur
+  tags: aur-setup
 
 # Install deps as root
 - name: Install built paru package
@@ -33,9 +33,10 @@
   args:
     chdir: /tmp/paru
     creates: /usr/bin/paru
+  tags: aur-setup
 
 - name: Install AUR packages with paru
   ansible.builtin.shell: |
     paru -S --noconfirm {{ item }}
   loop: "{{ aur_packages }}"
-  tags: aur
+  tags: aur-setup
