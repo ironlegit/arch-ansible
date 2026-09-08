@@ -17,26 +17,45 @@
     depth: 1
   tags: aur-setup
 
-# Separate  build (no root) and install step (root)
-# makepkg blocks root users, but internally uses `sudo pacman` for deps, which prompt for a password.
-- name: Build paru package (no root)
-  ansible.builtin.command: makepkg -f --noconfirm
-  args:
-    chdir: /tmp/paru
-    creates: /tmp/paru/paru-*.pkg.tar.zst
+# Create emphemeral passwordless sudo user to by-pass interactive password prompts
+# Issue: makepkg and paru do not allow sudo users, but internally require `sudo pacman` calls...
+- name: Ensure a non-root build user exists for AUR builds
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: true
+    shell: /bin/bash
+    system: true
   tags: aur-setup
 
-# Install deps as root
-- name: Install built paru package
-  become: true
-  ansible.builtin.shell: pacman -U --noconfirm /tmp/paru/paru-*.pkg.tar.zst
+- name: Allow aur_builder passwordless pacman (required by makepkg -si)
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/aur_builder-pacman
+    content: "aur_builder ALL=(root) NOPASSWD: /usr/bin/pacman\n"
+    owner: root
+    group: root
+    mode: '0440'
+    validate: 'visudo -cf %s'
+  tags: aur-setup
+
+- name: Build and install paru
+  become_user: aur_builder
+  ansible.builtin.shell: |
+    set -e
+    cd /tmp/paru
+    makepkg -si --noconfirm --needed
   args:
-    chdir: /tmp/paru
-    creates: /usr/bin/paru
+    creates: /usr/bin/paru 
   tags: aur-setup
 
 - name: Install AUR packages with paru
+  become_user: aur_builder
   ansible.builtin.shell: |
     paru -S --noconfirm {{ item }}
   loop: "{{ aur_packages }}"
+  tags: aur-setup
+
+- name: Remove temporary sudo rule
+  ansible.builtin.file:
+    path: /etc/sudoers.d/aur_builder-pacman
+    state: absent
   tags: aur-setup
