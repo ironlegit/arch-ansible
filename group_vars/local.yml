@@ -10,6 +10,7 @@ basic_pkgs:
   - dnsutils
   - gnupg
   - openssl
+  - fastfetch
 
 kde_packages:
   - plasma-meta
