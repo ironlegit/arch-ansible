@@ -1,13 +1,13 @@
 format = """
-[](#9A348E)\
+[](#3A693F)\
 $os\
 $username\
-[](bg:#DA627D fg:#9A348E)\
+[](bg:#0BB037 fg:#3A693F)\
 $directory\
-[](fg:#DA627D bg:#FCA17D)\
+[](fg:#0BB037 bg:#35BD80)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#86BBD8)\
+[](fg:#35BD80 bg:#31989E)\
 $c\
 $elixir\
 $elm\
@@ -22,11 +22,11 @@ $rust\
 $scala\
 $rlang\
 $python\
-[](fg:#86BBD8 bg:#06969A)\
+[](fg:#31989E bg:#06969A)\
 $docker_context\
-[](fg:#06969A bg:#33658A)\
+[](fg:#06969A bg:#3A693F)\
 $time\
-[ ](fg:#33658A)\
+[ ](fg:#3A693F)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -36,19 +36,19 @@ $time\
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
+style_user = "bg:#3A693F"
+style_root = "bg:#3A693F"
 format = '[$user ]($style)'
 disabled = false
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:#9A348E"
+style = "bg:#3A693F"
 disabled = true # Disabled by default
 
 [directory]
-style = "bg:#DA627D"
+style = "bg:#0BB037"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -68,12 +68,12 @@ truncation_symbol = "…/"
 
 [c]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [cpp]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
@@ -83,80 +83,80 @@ format = '[ $symbol $context ]($style)'
 
 [elixir]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#FCA17D"
+style = "bg:#35BD80"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FCA17D"
+style = "bg:#35BD80"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [gradle]
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = "󰆥 "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [rlang]
 symbol = "󰟔 "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#31989E"
 format = '[ $symbol ($version) ($virtualenv) ]($style)'
 disabled = false
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#33658A"
+style = "bg:#3A693F"
 format = '[   $time ]($style)'
