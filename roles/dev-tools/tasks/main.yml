@@ -60,5 +60,6 @@
     repo: https://github.com/ironlegit/nvim-config
     dest: "{{ ansible_facts['user_dir'] }}/.config/nvim"
     depth: 1
+    update: yes # in case it already exists
   tags: dev-tools
-  register: lazyvim_clone
+  # register: lazyvim_clone
