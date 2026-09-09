@@ -1,0 +1,14 @@
+---
+- name: Install darkly theme dependencies for KDE
+  community.general.pacman:
+    name: "{{ kde_darkly_deps }}"
+    state: present
+  become: yes
+  tags: kde
+
+- name: Enable plasma-login-manager (starts on next boot)
+  ansible.builtin.systemd:
+    name: plasmalogin.service
+    enabled: true
+  become: true
+  tags: kde
