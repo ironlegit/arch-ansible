@@ -1,0 +1,8 @@
+- name: Theme for the KDE Plasma desktop env
+  hosts: local
+  gather_facts: yes
+  roles:
+    - role: aur-setup
+      vars:
+        aur_package_type: theme
+    - role: kde-theme
