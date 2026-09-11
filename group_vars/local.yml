@@ -37,6 +37,7 @@ kde_packages:
   - kleopatra
 
 aur_basic:
+  - aur-scanner
   - brave-bin
   - libreoffice-still
 
