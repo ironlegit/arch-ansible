@@ -6,6 +6,10 @@ The desktop environment is a minimal KDE Plasma installation (see group_vars/loc
 
 This VM is intended for development and is centred around Zsh, LazyVim and Lazygit.
 
+# Disclaimers
+
+This playbook installs AUR packages without explicitly checking them. If you want to be sure scan the packages using [AUR Security Scanner](https://github.com/KiefStudioMA/ks-aur-scanner), which funnily enough is also an AUR package.
+
 # 1. VMware Image Setup
 
 ## Get Arch Linux Image
