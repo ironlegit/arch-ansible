@@ -4,5 +4,5 @@
   roles:
     - role: aur-setup
       vars:
-        aur_package_type: theme
+        aur_pkg_type: theme
     - role: kde-theme

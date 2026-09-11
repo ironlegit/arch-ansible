@@ -1,8 +1,8 @@
 ---
 
 # Switch for packages set
-aur_package_type: base
-aur_packages:
+aur_pkg_type: base
+aur_pkg:
   base: "{{ aur_basic }}"
   theme: "{{ aur_theme }}"
 
