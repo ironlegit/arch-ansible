@@ -36,11 +36,11 @@ kde_packages:
   - kget
   - kleopatra
 
-aur_packages:
+aur_basic:
   - brave-bin
   - libreoffice-still
 
-aur_packages_theme:
+aur_theme:
   - darkly-bin
 
 lazyvim_deps:

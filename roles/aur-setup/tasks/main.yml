@@ -1,4 +1,11 @@
 ---
+
+# Switch for packages set
+aur_package_type: base
+aur_packages:
+  base: "{{ aur_basic }}"
+  theme: "{{ aur_theme }}"
+
 # Based on https://github.com/Morganamilo/paru#installation
 - name: Install base-devel for AUR builds
   become: true
@@ -49,13 +56,11 @@
         creates: /usr/bin/paru
       tags: aur-setup
 
-    - name: Install AUR packages with paru
-      become: true
-      become_user: aur_builder
-      ansible.builtin.shell: |
-        paru -S --noconfirm {{ item }}
-      loop: "{{ aur_packages }}"
-      tags: aur-setup
+    - name: "Install AUR package set: {{ aur_package_set }}"
+        become: true
+        become_user: aur_builder
+        ansible.builtin.command: paru -S --noconfirm --needed {{ item }}
+        loop: "{{ aur_packages[aur_package_set] }}"
 
     # - name: ERROR - test always block
     #   become: true
