@@ -1,11 +1,4 @@
 ---
-
-# Switch for packages set
-aur_pkg_type: base
-aur_pkg:
-  base: "{{ aur_basic }}"
-  theme: "{{ aur_theme }}"
-
 # Based on https://github.com/Morganamilo/paru#installation
 - name: Install base-devel for AUR builds
   become: true
