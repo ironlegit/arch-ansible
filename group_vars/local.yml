@@ -39,6 +39,8 @@ kde_packages:
 aur_packages:
   - brave-bin
   - libreoffice-still
+
+aur_packages_theme:
   - darkly-bin
 
 lazyvim_deps:
