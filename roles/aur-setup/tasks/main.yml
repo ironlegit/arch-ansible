@@ -49,11 +49,11 @@
         creates: /usr/bin/paru
       tags: aur-setup
 
-    - name: "Install AUR package set: {{ aur_package_set }}"
-        become: true
-        become_user: aur_builder
-        ansible.builtin.command: paru -S --noconfirm --needed {{ item }}
-        loop: "{{ aur_packages[aur_package_set] }}"
+    - name: "Install AUR package set: {{ aur_pkg }}"
+      become: true
+      become_user: aur_builder
+      ansible.builtin.command: paru -S --noconfirm --needed {{ item }}
+      loop: "{{ aur_pkg[aur_pkg_type] }}"
 
     # - name: ERROR - test always block
     #   become: true

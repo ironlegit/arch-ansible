@@ -63,8 +63,8 @@
 
 - name: Deploy wallpaper
   ansible.builtin.copy:
-    src: "wallpaper.jpg"
-    dest: "{{ ansible_env.HOME }}/.local/share/wallpapers/rasmus-gundorff-saederup-379eC1vAJZA-unsplash.jpg"
+    src: "rasmus-gundorff-saederup-379eC1vAJZA-unsplash.jpg"
+    dest: "{{ ansible_env.HOME }}/.local/share/wallpapers/"
     mode: "0644"
   tags: kde-theme
 
