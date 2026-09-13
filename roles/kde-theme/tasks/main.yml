@@ -59,6 +59,7 @@
     - plasmarc
     - plasma-org.kde.plasma.desktop-appletsrc
     - kwinrc
+    - plasmashellrc
   tags: kde-theme
 
 - name: Deploy wallpaper
