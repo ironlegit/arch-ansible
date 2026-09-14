@@ -5,7 +5,7 @@
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored
-zstyle :compinstall filename '/home/rli/.zshrc'
+zstyle :compinstall filename '/home/{{ ansible_facts['user_dir'] }}/.zshrc'
 
 autoload -Uz compinit
 compinit
