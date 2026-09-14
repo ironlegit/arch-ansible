@@ -111,7 +111,7 @@ ansible-playbook -i inventory playbook-arch-vmware.yml --ask-become-pass --check
 Run all playbooks:
 
 ```bash
-ansible-playbook -i inventory playbook-arch-vmware.yml --ask-become-pass
+ansible-playbook -i inventory playbook-arch-vmware.yml --ask-become-pass -vv
 ```
 
 Run specific roles, e.g.:
@@ -122,7 +122,17 @@ ansible-playbook -K playbook-arch-vmware.yml --tags pacman-update --ask-become-p
 
 For all available tags, check `ansible-playbook playbook-arch-vmware.yml --list-tags`.
 
-# 4. Troubleshooting
+# 4. KDE Theme
+
+To adopt the KDE Plasma theme, run the corresponding playbook:
+
+```bash
+ansible-playbook -i inventory playbook-desktop-theme.yml --ask-become-pass -v
+``` 
+
+It's an adaptation of the Darkly KDE theme with a sylvan twist.
+
+# 5. Troubleshooting
 
 ## Sluggish keystrokes in VMware Workstation
 
