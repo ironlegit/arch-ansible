@@ -132,6 +132,8 @@ ansible-playbook -i inventory playbook-desktop-theme.yml --ask-become-pass -v
 
 It's an adaptation of the Darkly KDE theme with a sylvan twist.
 
+**Wallpaper shoutout**: Photo by <a href="https://unsplash.com/@rasmusgs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rasmus Gundorff Sæderup</a> on <a href="https://unsplash.com/photos/a-forest-of-trees-379eC1vAJZA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
 # 5. Troubleshooting
 
 ## Sluggish keystrokes in VMware Workstation
