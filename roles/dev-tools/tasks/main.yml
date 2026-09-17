@@ -14,9 +14,9 @@
 - name: Install Python3, pip, and Poetry globally
   community.general.pacman:
     name:
-      - python  # Provides python3 on Arch
+      - python # Provides python3 on Arch
       - python-pip
-      - poetry  # Installs Poetry system-wide
+      - poetry # Installs Poetry system-wide
     state: present
   become: true
   tags: dev-tools
@@ -45,12 +45,12 @@
   community.general.pacman:
     name: nvim
     state: present
-  become: yes
+  become: true
   tags: dev-tools
 
 - name: Lazyvim dependencies
   community.general.pacman:
     name: "{{ lazyvim_deps }}"
     state: present
-  become: yes
+  become: true
   tags: dev-tools
