@@ -12,12 +12,12 @@ This playbook installs AUR packages without explicitly checking them. If you wan
 
 # 1. VMware Image Setup
 
-## Get Arch Linux Image
+## 1.1 Get Arch Linux Image
 
 - Get ISO and signature files from an official [Arch Linux Repo](https://archlinux.org/download/).
 - Follow instructions to check checksums and signature.
 
-## VMware Setup
+## 1.2 VMware Setup
 
 - `File > New Virtual Machine`
 - **Virtual Machine Configuration:** Typical
@@ -83,7 +83,7 @@ The ansible playbook covers post-installation configuration for Arch Linux in a 
 * The `dev-tools` role is very tailored to my liking.
 * Review the `aur-setup` role and  decide whether you're comfortable proceeding with it.
 
-## What This Does
+## 3.1 What This Does
 
 - Updates pacman and system packages
 - Installs and configures VMware tools (only `playbook-arch-vmvare.yml`)
@@ -91,14 +91,14 @@ The ansible playbook covers post-installation configuration for Arch Linux in a 
 - Installs KDE Plasma desktop with selected applications
 - Sets up AUR access and installs AUR packages
 
-## Requirements
+## 3.2 Requirements
 
 If not already done during `archinstall`:
 - Arch Linux with sudo access for current user
 - Ansible installed: `sudo pacman -S ansible`
 - Git: `sudo pacman -S git`
 
-## Dry-run
+## 3.3 Dry-run
 
 Test run playbooks:
 
@@ -106,7 +106,7 @@ Test run playbooks:
 ansible-playbook -i inventory playbook-arch-vmware.yml --ask-become-pass --check -v
 ``` 
 
-## Usage
+## 3.4 Usage
 
 Run all playbooks:
 
@@ -133,6 +133,13 @@ ansible-playbook -i inventory playbook-desktop-theme.yml --ask-become-pass -v
 It's an adaptation of the Darkly KDE theme with a sylvan twist.
 
 **Wallpaper shoutout**: Photo by <a href="https://unsplash.com/@rasmusgs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rasmus Gundorff Sæderup</a> on <a href="https://unsplash.com/photos/a-forest-of-trees-379eC1vAJZA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+## 4.1 Update KDE dotfiles
+
+Run this shell script to update the Jinja templates.
+```bash
+./tools/update_kde_dotfiles.sh 
+```
 
 # 5. Troubleshooting
 
