@@ -5,7 +5,7 @@
       - zsh
       - nerd-fonts
     state: present
-  become: yes
+  become: true
   tags: zsh
 
 - name: Install starship via curl
@@ -13,7 +13,7 @@
     curl -sS https://starship.rs/install.sh | sh -s -- --yes
   args:
     creates: /usr/local/bin/starship
-  become: yes
+  become: true
   tags: zsh
 
 - name: Add starship to .zshrc
@@ -23,15 +23,43 @@
       # Starship prompt
       eval "$(starship init zsh)"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - Starship"
-    create: yes
+    create: true
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
-    mode: '0644'
+    mode: "0644"
   tags: zsh
 
 - name: Set zsh as default shell
   ansible.builtin.user:
     name: "{{ ansible_facts['user_id'] }}"
     shell: /usr/bin/zsh
-  become: yes
+  become: true
+  tags: zsh
+
+- name: Add zsh pkgs
+  community.general.pacman:
+    name: "{{ zsh_pkgs }}"
+    state: present
+  become: true
+  tags: zsh
+
+- name: Enable zsh-autosuggestions in .zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.zshrc"
+    line: "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    create: true
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0644"
+  tags: zsh
+
+- name: Enable zsh-syntax-highlighting in .zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.zshrc"
+    line: "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    create: true
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0644"
+  become: false
   tags: zsh

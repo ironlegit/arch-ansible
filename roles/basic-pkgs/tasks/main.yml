@@ -3,5 +3,5 @@
   community.general.pacman:
     name: "{{ basic_pkgs }}"
     state: present
-  become: yes
+  become: true
   tags: basic
