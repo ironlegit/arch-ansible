@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/demo.png" alt="desktop-example" width="150">
+  <img src="assets/demo.png" alt="desktop-example" width="640">
 </p>
 git pu
 <p align="center">
