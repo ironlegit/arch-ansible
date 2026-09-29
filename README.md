@@ -1,3 +1,5 @@
+<h2 align="center">🌲 Undergrowth-Arch 🌲</h2>
+
 <p align="center">
   <img src="assets/demo.png" alt="desktop-example" width="640">
 </p>
@@ -6,8 +8,7 @@
   <a href="https://github.com/ironlegit/undergrowth-arch/tags"><img alt="Version" src="https://img.shields.io/github/v/tag/ironlegit/undergrowth-arch?filter=v*"></a>
 </p>
 
-
-# 🌲 Undergrowth-Arch 🌲
+# Overview
 
 This is a KDE Plasma-based VM configuration for development work built on Arch Linux. It was primarily built to be used as a VM in VMware Workstation Pro, but should also work on its own. The desktop environment is based on a minimal KDE Plasma installation (see `group_vars/local.yml` &rarr; `kde_packages`) with no media features, communication tools, or office applications except LibreOffice. The theme is organic and sylvan, centered on this aesthetic.
 
