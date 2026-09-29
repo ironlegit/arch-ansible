@@ -1,10 +1,11 @@
 # Arch Linux VMware Setup
 
-This setup is highly specialized and opinionated. It was primarily developed as a VM for use with the VMware Workstation Pro hypervisor. 
+This is a KDE Plasma-based VM configuration for development work built on Arch Linux. It was primarily built to be used as a VM in VMware Workstation Pro, but should also work on its own. The desktop environment is based on a minimal KDE Plasma installation (see `group_vars/local.yml` → `kde_packages`) with no media features, communication tools, or office applications except LibreOffice. The theme is organic and sylvan, centered on this aesthetic.
 
-The desktop environment is a minimal KDE Plasma installation (see group_vars/local.yml &rarr; kde_packages) and offers virtually no media features, communication tools or office-tools, except for libre-office.
+This setup focuses on development centered on Zsh, LazyVim, and Lazygit.
 
-This VM is intended for development and is centred around Zsh, LazyVim and Lazygit.
+> [!IMPORTANT]
+> This setup is highly specialized and opinionated.
 
 # Disclaimers
 
