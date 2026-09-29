@@ -1,4 +1,17 @@
-# Arch Linux VMware Setup
+<p align="center">
+  <img src="assets/demo.png" alt="desktop-example" width="150">
+</p>
+git pu
+<p align="center">
+  <a href="https://github.com/ironlegit/undergrowth-arch/tags"><img alt="Version" src="https://img.shields.io/github/v/tag/ironlegit/undergrowth-arch?filter=v*"></a>
+  <a href="https://sonarcloud.io/dashboard?id=ironlegit_undergrowth-arch"><img alt="Quality Gate Status" src="https://sonarcloud.io/api/project_badges/measure?project=ironlegit_undergrowth-arch&metric=alert_status"></a>
+  <a href="https://sonarcloud.io/dashboard?id=ironlegit_undergrowth-arch"><img alt="Maintainability Rating" src="https://sonarcloud.io/api/project_badges/measure?project=ironlegit_undergrowth-arch&metric=sqale_rating"></a>
+  <a href="https://sonarcloud.io/dashboard?id=ironlegit_undergrowth-arch"><img alt="Security Rating" src="https://sonarcloud.io/api/project_badges/measure?project=ironlegit_undergrowth-arch&metric=security_rating"></a>
+  <a href="https://sonarcloud.io/dashboard?id=ironlegit_undergrowth-arch"><img alt="Bugs" src="https://sonarcloud.io/api/project_badges/measure?project=ironlegit_undergrowth-arch&metric=bugs"></a>
+</p>
+
+
+# 🌲 Undergrowth-Arch 🌲
 
 This is a KDE Plasma-based VM configuration for development work built on Arch Linux. It was primarily built to be used as a VM in VMware Workstation Pro, but should also work on its own. The desktop environment is based on a minimal KDE Plasma installation (see `group_vars/local.yml` &rarr; `kde_packages`) with no media features, communication tools, or office applications except LibreOffice. The theme is organic and sylvan, centered on this aesthetic.
 
